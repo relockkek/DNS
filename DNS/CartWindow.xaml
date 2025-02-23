@@ -1,0 +1,128 @@
+﻿<Window x:Class="DNS.CartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Корзина" Height="600" Width="800"
+        Background="#FFFFFF"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResizeWithGrip">
+    <Window.Resources>
+        <!-- Основной фон -->
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#FFFFFF"/>
+        <!-- Цвет текста -->
+        <SolidColorBrush x:Key="TextBrush" Color="#333333"/>
+        <!-- Цвет заголовков -->
+        <SolidColorBrush x:Key="HeaderBrush" Color="#007ACC"/>
+        <!-- Цвет кнопок -->
+        <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#007ACC"/>
+        <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#005F9C"/>
+        <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#004B7A"/>
+
+        <!-- Стиль кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ButtonHoverBackgroundBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="{StaticResource ButtonPressedBackgroundBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль текстовых блоков -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- Стиль заголовков -->
+        <Style TargetType="TextBlock" x:Key="HeaderStyle">
+            <Setter Property="Foreground" Value="{StaticResource HeaderBrush}"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- Стиль текстовых полей -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#F0F0F0"/>
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <!-- Стиль границ -->
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" Margin="16">
+            <ItemsControl ItemsSource="{Binding CartItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#F9F9F9" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="4" Margin="8">
+                            <StackPanel Margin="16">
+                                <Image Source="{Binding Product.ImagePath}" Width="50" Height="50" Stretch="UniformToFill" Margin="0,0,16,0"/>
+                                <TextBlock Text="{Binding Product.Name}" FontSize="16" FontWeight="Bold" Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding Product.Description}" TextWrapping="Wrap" Margin="0,0,0,4"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock Text="Артикул: " FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Product.ArticleNumber}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock Text="Цена: " FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Product.Price, StringFormat=C}" Foreground="#007ACC"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                    <TextBlock Text="Количество: " FontWeight="Bold"/>
+                                    <TextBox Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" Width="50" Margin="0,0,16,0"/>
+                                    <TextBlock Text="{Binding TotalPrice, StringFormat=C}" Foreground="#007ACC"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="16">
+            <TextBlock Text="Итого: " FontWeight="Bold" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding TotalSum, StringFormat=C}" Foreground="#007ACC" VerticalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

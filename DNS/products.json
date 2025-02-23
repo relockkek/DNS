@@ -1,0 +1,18 @@
+﻿[
+    {
+        "Name": "Холодильник",
+        "Description": "Многофункциональный холодильник",
+        "ArticleNumber": "HR-001",
+        "Price": 15000,
+        "QuantityInStock": 10,
+        "ImagePath": "Images/samsung.jpg"
+    },
+    {
+        "Name": "Плита",
+        "Description": "Электрическая плита",
+        "ArticleNumber": "ST-001",
+        "Price": 8000,
+        "QuantityInStock": 5,
+        "ImagePath": "Images/stove.jpg"
+    }
+]
