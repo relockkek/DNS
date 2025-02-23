@@ -7,19 +7,19 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="CanResizeWithGrip">
     <Window.Resources>
-        <!-- Основной фон -->
+        
         <SolidColorBrush x:Key="BackgroundBrush" Color="#FFFFFF"/>
-        <!-- Цвет текста -->
+        
         <SolidColorBrush x:Key="TextBrush" Color="#333333"/>
-        <!-- Цвет заголовков -->
+        
         <SolidColorBrush x:Key="HeaderBrush" Color="#007ACC"/>
-        <!-- Цвет кнопок -->
+        
         <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="#007ACC"/>
         <SolidColorBrush x:Key="ButtonForegroundBrush" Color="#FFFFFF"/>
         <SolidColorBrush x:Key="ButtonHoverBackgroundBrush" Color="#005F9C"/>
         <SolidColorBrush x:Key="ButtonPressedBackgroundBrush" Color="#004B7A"/>
 
-        <!-- Стиль кнопок -->
+        
         <Style TargetType="Button">
             <Setter Property="Background" Value="{StaticResource ButtonBackgroundBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource ButtonForegroundBrush}"/>
@@ -51,20 +51,20 @@
             </Setter>
         </Style>
 
-        <!-- Стиль текстовых блоков -->
+
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
 
-        <!-- Стиль заголовков -->
+        
         <Style TargetType="TextBlock" x:Key="HeaderStyle">
             <Setter Property="Foreground" Value="{StaticResource HeaderBrush}"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
-        <!-- Стиль текстовых полей -->
+
         <Style TargetType="TextBox">
             <Setter Property="Background" Value="#F0F0F0"/>
             <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
@@ -75,7 +75,7 @@
             <Setter Property="Margin" Value="5"/>
         </Style>
 
-        <!-- Стиль границ -->
+        
         <Style TargetType="Border">
             <Setter Property="BorderBrush" Value="#CCCCCC"/>
             <Setter Property="BorderThickness" Value="1"/>
